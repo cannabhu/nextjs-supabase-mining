@@ -1,153 +1,172 @@
+"use client";
+
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
+import { InfiniteMovingCards } from "@/components/ui/infinite-moving-cards";
+import { BackgroundLines } from "@/components/ui/background-lines";
+import Footer from "@/components/Footer";
+import FeatureCard from "@/components/FeatureCard";
+import { ContainerScroll } from "@/components/ui/container-scroll-animation";
+import Image from "next/image";
+import { FlipWords } from "@/components/ui/flip-words";
+import Header from "@/components/Header";
 
 export default function Home() {
   return (
-    <div className="flex flex-col min-h-screen">
-      <header className="px-4 lg:px-6 h-16 flex items-center border-b">
-        <Link href="/" className="flex items-center justify-center">
-          <span className="font-bold text-xl">Africa-Onboard</span>
-        </Link>
-        <nav className="ml-auto flex gap-4 sm:gap-6">
-          <Link
-            href="/about"
-            className="text-sm font-medium hover:underline underline-offset-4"
-          >
-            About
-          </Link>
-          <Link
-            href="/features"
-            className="text-sm font-medium hover:underline underline-offset-4"
-          >
-            Features
-          </Link>
-          <Link
-            href="/contact"
-            className="text-sm font-medium hover:underline underline-offset-4"
-          >
-            Contact
-          </Link>
-        </nav>
-      </header>
+    <div className="flex flex-col min-h-screen bg-background">
+      <Header />
       <main className="flex-1">
-        <section className="w-full py-12 md:py-24 lg:py-32 xl:py-48">
-          <div className="container px-4 md:px-6">
-            <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
-              <div className="flex flex-col justify-center space-y-4">
-                <div className="space-y-2">
-                  <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-                    Connecting Investors, Miners, and Contractors
-                  </h1>
-                  <p className="max-w-[600px] text-muted-foreground md:text-xl">
-                    A modern platform for real-time project updates, investment
-                    tracking, and seamless communication.
-                  </p>
-                </div>
-                <div className="flex flex-col gap-2 min-[400px]:flex-row">
+        {/* Hero Section */}
+        <section>
+          <BackgroundLines className="container mx-auto px-4 flex flex-col py-20 lg:flex-row items-center w-full">
+            <motion.div
+              className="md:w-1/2 py-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
+                Connecting <br /> <FlipWords words={words} />
+              </h1>
+              <p className="text-lg text-secondary-foreground max-w-2xl py-2">
+                A modern platform for real-time project updates, investment
+                tracking, and seamless communication.
+              </p>
+              <div className="flex flex-wrap gap-4">
+                <motion.div whileHover={{ scale: 1.05 }}>
                   <Link href="/dashboard">
-                    <Button size="lg">Go to Dashboard</Button>
-                  </Link>
-                  <Link href="/auth/login">
-                    <Button size="lg" variant="outline">
-                      Login
+                    <Button
+                      size="lg"
+                      className="bg-primary text-primary-foreground"
+                    >
+                      Go to Dashboard
                     </Button>
                   </Link>
-                </div>
+                </motion.div>
+                <motion.div whileHover={{ scale: 1.05 }}>
+                  <Link href="/auth/login">
+                    <Button size="lg" variant="outline">
+                      Sign In
+                    </Button>
+                  </Link>
+                </motion.div>
               </div>
-              <div className="flex items-center justify-center">
-                <div className="relative h-[450px] w-full overflow-hidden rounded-xl bg-muted">
-                  <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-primary/0 to-background/0" />
-                  <div className="flex h-full items-center justify-center">
-                    <div className="grid gap-2 p-4 sm:grid-cols-2 md:gap-4 lg:grid-cols-1">
-                      <div className="flex flex-col gap-1 rounded-lg border bg-card p-3 text-card-foreground shadow">
-                        <div className="text-sm font-medium">
-                          Investment Growth
-                        </div>
-                        <div className="text-2xl font-bold">+24.5%</div>
-                      </div>
-                      <div className="flex flex-col gap-1 rounded-lg border bg-card p-3 text-card-foreground shadow">
-                        <div className="text-sm font-medium">
-                          Active Projects
-                        </div>
-                        <div className="text-2xl font-bold">12</div>
-                      </div>
-                      <div className="flex flex-col gap-1 rounded-lg border bg-card p-3 text-card-foreground shadow">
-                        <div className="text-sm font-medium">
-                          Sustainability Score
-                        </div>
-                        <div className="text-2xl font-bold">92/100</div>
-                      </div>
-                      <div className="flex flex-col gap-1 rounded-lg border bg-card p-3 text-card-foreground shadow">
-                        <div className="text-sm font-medium">
-                          Compliance Rate
-                        </div>
-                        <div className="text-2xl font-bold">100%</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="md:w-1/2 py-20"
+            >
+              {/* Placeholder for hero image or additional content */}
+
+              <Image
+                src="/hero.png"
+                alt="hero"
+                className=" border rounded-[75%_25%_64%_36%_/_14%_49%_51%_86%]"
+                width={1000}
+                height={700}
+              />
+            </motion.div>
+          </BackgroundLines>
+        </section>
+
+        {/* Reviews Section */}
+        <section className="bg-secondary/10 py-20">
+          <p className="font-bold text-3xl text-center">Testimonials</p>
+          <div className="container mx-auto px-4">
+            <div className="h-[20rem] rounded-md flex flex-col antialiased bg-white dark:bg-black dark:bg-grid-white/[0.05] items-center justify-center relative overflow-hidden">
+              <InfiniteMovingCards
+                items={testimonials}
+                direction="right"
+                speed="slow"
+              />
             </div>
           </div>
         </section>
-        <section className="w-full py-12 md:py-24 lg:py-32 bg-muted">
-          <div className="container px-4 md:px-6">
-            <div className="flex flex-col items-center justify-center space-y-4 text-center">
-              <div className="space-y-2">
-                <h2 className="text-3xl font-bold tracking-tighter sm:text-5xl">
-                  Key Features
-                </h2>
-                <p className="max-w-[900px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                  Our platform provides comprehensive tools for all stakeholders
-                  in the mining industry.
-                </p>
-              </div>
-            </div>
-            <div className="mx-auto grid max-w-5xl items-center gap-6 py-12 lg:grid-cols-3 lg:gap-12">
-              <div className="grid gap-1">
-                <h3 className="text-xl font-bold">Investor Dashboard</h3>
-                <p className="text-muted-foreground">
-                  Track investments, ROI projections, and financial insights
-                  with interactive charts.
-                </p>
-              </div>
-              <div className="grid gap-1">
-                <h3 className="text-xl font-bold">Project Status</h3>
-                <p className="text-muted-foreground">
-                  Real-time updates on mining operations, permit details, and
-                  regulatory compliance.
-                </p>
-              </div>
-              <div className="grid gap-1">
-                <h3 className="text-xl font-bold">Sustainability Plans</h3>
-                <p className="text-muted-foreground">
-                  Detailed execution plans for community initiatives with
-                  progress tracking.
-                </p>
-              </div>
+
+        {/* Periodic Table Section */}
+        <section className=" bg-secondary/10">
+          <div className="container mx-auto px-4">
+            <ContainerScroll titleComponent={<></>}>
+              <Image
+                src={`/periodic.png`}
+                alt="hero"
+                height={720}
+                width={1400}
+                className="mx-auto rounded-2xl object-cover h-full object-left-top"
+                draggable={false}
+              />
+            </ContainerScroll>
+          </div>
+        </section>
+
+        {/* Features Section */}
+        <section className="py-10 bg-secondary/10">
+          <div className="container mx-auto px-4">
+            <motion.div
+              className="text-center mb-12"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="text-3xl font-bold mb-4">Key Features</h2>
+              <p className="text-secondary-foreground max-w-2xl mx-auto">
+                Everything you need to manage your mining investments and
+                projects efficiently.
+              </p>
+            </motion.div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[
+                "Real-time Updates",
+                "Investment Tracking",
+                "Project Management",
+                "Safety Reports",
+                "Community Impact",
+                "Supply Chain",
+              ].map((feature, i) => (
+                <FeatureCard key={feature} feature={feature} index={i} />
+              ))}
             </div>
           </div>
         </section>
       </main>
-      <footer className="flex flex-col gap-2 sm:flex-row py-6 w-full shrink-0 items-center px-4 md:px-6 border-t">
-        <p className="text-xs text-muted-foreground">
-          &copy; {new Date().getFullYear()} Africa-Onboard. All rights reserved.
-        </p>
-        <nav className="sm:ml-auto flex gap-4 sm:gap-6">
-          <Link
-            href="/terms"
-            className="text-xs hover:underline underline-offset-4"
-          >
-            Terms of Service
-          </Link>
-          <Link
-            href="/privacy"
-            className="text-xs hover:underline underline-offset-4"
-          >
-            Privacy
-          </Link>
-        </nav>
-      </footer>
+      <Footer />
     </div>
   );
 }
+const testimonials = [
+  {
+    quote:
+      "It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity, it was the season of Light, it was the season of Darkness, it was the spring of hope, it was the winter of despair.",
+    name: "Charles Dickens",
+    title: "A Tale of Two Cities",
+  },
+  {
+    quote:
+      "To be, or not to be, that is the question: Whether 'tis nobler in the mind to suffer The slings and arrows of outrageous fortune, Or to take Arms against a Sea of troubles, And by opposing end them: to die, to sleep.",
+    name: "William Shakespeare",
+    title: "Hamlet",
+  },
+  {
+    quote: "All that we see or seem is but a dream within a dream.",
+    name: "Edgar Allan Poe",
+    title: "A Dream Within a Dream",
+  },
+  {
+    quote:
+      "It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife.",
+    name: "Jane Austen",
+    title: "Pride and Prejudice",
+  },
+  {
+    quote:
+      "Call me Ishmael. Some years ago—never mind how long precisely—having little or no money in my purse, and nothing particular to interest me on shore, I thought I would sail about a little and see the watery part of the world.",
+    name: "Herman Melville",
+    title: "Moby-Dick",
+  },
+];
+
+const words = ["Investors", "Miners", "Contractors"];
