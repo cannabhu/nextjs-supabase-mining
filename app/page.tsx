@@ -18,10 +18,9 @@ export default function Home() {
       <Header />
       <main className="flex-1">
         {/* Hero Section */}
-        <section>
-          <BackgroundLines className="container mx-auto px-4 flex flex-col py-20 lg:flex-row items-center w-full">
+        <section className="container mx-auto px-4 flex flex-col py-20 lg:flex-row items-center w-full">
+          <BackgroundLines className="md:w-1/2 py-8 flex items-center justify-center">
             <motion.div
-              className="md:w-1/2 py-8"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
@@ -53,23 +52,25 @@ export default function Home() {
                 </motion.div>
               </div>
             </motion.div>
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="md:w-1/2 py-20"
-            >
-              {/* Placeholder for hero image or additional content */}
-
-              <Image
-                src="/hero.png"
-                alt="hero"
-                className=" border rounded-[75%_25%_64%_36%_/_14%_49%_51%_86%]"
-                width={1000}
-                height={700}
-              />
-            </motion.div>
           </BackgroundLines>
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className=" md:w-1/2 py-20 "
+          >
+            {/*  hero image or additional content */}
+            {/* 
+            <p>Hero Image</p> */}
+
+            <Image
+              src="/hero.png"
+              alt="hero"
+              className=" border rounded-[75%_25%_64%_36%_/_14%_49%_51%_86%]"
+              width={1000}
+              height={700}
+            />
+          </motion.div>
         </section>
 
         {/* Reviews Section */}
